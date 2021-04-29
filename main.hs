@@ -4,11 +4,8 @@ import System.IO
 main :: IO()
 main = do
 
-    putStrLn $ "Bem vind@!\n"
-    putStrLn $ "Aqui vamos calcular suas finanças"
-    putStrLn $ "Se possuir, digite seu salario, caso nao possua, digite 0"
-    salario <- getLine
-    putStrLn $ "Ok, salário cadastrado!" ++ "\n"
+    putStrLn $ "Bem vind@!"
+    putStrLn $ "Aqui vamos calcular suas finanças!\n"
     showMenu
 
 showMenu :: IO()
@@ -50,8 +47,8 @@ menuSalario = do
     putStrLn("2 - Editar salário")
     putStrLn("3 - Excluir salário")
     putStrLn("4 - Voltar ao menu principal")
-    --opcao <- getLine
-    --chamarMenuSalario opcao
+    opcao <- getLine
+    chamarMenuSalario opcao
 
 menuBonusSalarial :: IO()
 menuBonusSalarial = do
@@ -60,8 +57,8 @@ menuBonusSalarial = do
     putStrLn("2 - Editar bônus salarial")
     putStrLn("3 - Excluir bônus")
     putStrLn("4 - Voltar ao menu principal")
-    --opcao <- getLine
-    --chamarMenuBonusSalarial opcao
+    opcao <- getLine
+    chamarMenuBonusSalarial opcao
 
 menuInvestimento :: IO()
 menuInvestimento = do
@@ -88,9 +85,28 @@ chamarMenuCategoria x
     | x == "1" = cadastraCategoria
     | x == "2" = editaCategoria
     | x == "3" = excluiCategoria
+    | x == "4" = showMenu
+    | otherwise = putStrLn("Não é uma opção válida")
+
+chamarMenuSalario :: String -> IO()
+chamarMenuSalario x
+    | x == "1" = cadastraSalario
+    | x == "2" = editaSalario
+    | x == "3" = excluiSalario
+    | x == "4" = showMenu
+    | otherwise = putStrLn("Não é uma opção válida")
+
+chamarMenuBonusSalarial :: String -> IO()
+chamarMenuBonusSalarial x
+    | x == "1" = cadastraBonusSalarial
+    | x == "2" = editaBonusSalarial
+    | x == "3" = excluiBonusSalarial
+    | x == "4" = showMenu
     | otherwise = putStrLn("Não é uma opção válida")
 
 
+
+-- CATEGORIA
 cadastraCategoria :: IO()
 cadastraCategoria = do
  putStrLn "Digite o nome da nova categoria:"
@@ -108,8 +124,6 @@ cadastraCategoria = do
   putStrLn "Categoria cadastrada com sucesso!!\n\n"
   hFlush file
   hClose file
-  addSomasCategorias (read valor)
-
 
 editaCategoria :: IO()
 editaCategoria = do
@@ -143,22 +157,91 @@ excluiCategoria = do
   menuCategoria
 
 
-addSomasCategorias:: Float -> IO()
-addSomasCategorias valor = do
-  fileExists <- doesFileExist ("somaCategorias.txt")
-  if fileExists
+-- SALARIO
+cadastraSalario :: IO()
+cadastraSalario = do
+ fileExists <- doesFileExist ("salario.txt")
+ if fileExists
   then do
-  file <- openFile ("somaCategorias.txt") ReadMode
-  valorTotal <- hGetContents file
-  novoValorTotal <- (read valorTotal::IO Float) + valor
-  hFlush file
-  hClose file
-  file2 <- openFile ("somaCategorias.txt") WriteMode
-  hPutStr file2 novoValorTotal
-  hFlush file2
-  hClose file2
+  putStrLn "Sálario já cadastrado!!\nO que deseja fazer?\n"
+  menuSalario
   else do
-  file <- openFile ("somaCategorias.txt") WriteMode
-  hPutStr file valor
+  putStrLn "Digite o valor do seu salário em reais:"
+  salario <- getLine
+  file <- openFile ("salario.txt") WriteMode
+  hPutStr file salario
+  putStrLn "Salário cadastrado com sucesso!!\n"
   hFlush file
   hClose file
+
+editaSalario :: IO()
+editaSalario = do
+ putStrLn "Digite o novo valor do seu salário:"
+ salario <- getLine
+ fileExists <- doesFileExist ("salario.txt")
+ if fileExists
+  then do
+  file <- openFile ("salario.txt") WriteMode
+  hPutStr file salario
+  putStrLn "Salário editado com sucesso!!\n"
+  hFlush file
+  hClose file
+  else do
+  putStrLn "Ainda não foi cadastrado um salário. \nO que deseja fazer?\n"
+  menuSalario
+
+excluiSalario:: IO()
+excluiSalario = do
+ fileExists <- doesFileExist ("salario.txt")
+ if fileExists
+  then do
+  removeFile ("salario.txt")
+  putStrLn "Salário excluído com sucesso!!\n"
+  else do
+  putStrLn "Ainda não foi cadastrado um salário. \nO que deseja fazer?\n"
+  menuSalario
+
+
+-- BONUS SALARIAL
+cadastraBonusSalarial :: IO()
+cadastraBonusSalarial = do
+ fileExists <- doesFileExist ("bonusSalarial.txt")
+ if fileExists
+  then do
+  putStrLn "Bônus salarial já cadastrado!!\nO que deseja fazer?\n"
+  menuBonusSalarial
+  else do
+  putStrLn "Digite o valor do bônus salarial em reais:"
+  bonusSalarial <- getLine
+  file <- openFile ("bonusSalarial.txt") WriteMode
+  hPutStr file bonusSalarial
+  putStrLn "Bônus salarial cadastrado com sucesso!!\n"
+  hFlush file
+  hClose file
+
+editaBonusSalarial :: IO()
+editaBonusSalarial = do
+ putStrLn "Digite o novo valor do valor do Bônus Salarial:"
+ bonusSalarial <- getLine
+ fileExists <- doesFileExist ("bonusSalarial.txt")
+ if fileExists
+  then do
+  file <- openFile ("bonusSalarial.txt") WriteMode
+  hPutStr file bonusSalarial
+  putStrLn "Bônus salarial editado com sucesso!!\n"
+  hFlush file
+  hClose file
+  else do
+  putStrLn "Ainda não foi cadastrado um bônus salarial. \nO que deseja fazer?\n"
+  menuBonusSalarial
+
+excluiBonusSalarial:: IO()
+excluiBonusSalarial = do
+ fileExists <- doesFileExist ("bonusSalarial.txt")
+ if fileExists
+  then do
+  removeFile ("bonusSalarial.txt")
+  putStrLn "Bônus salarial excluído com sucesso!!\n"
+  else do
+  putStrLn "Ainda não foi cadastrado um bônus salarial. \nO que deseja fazer?\n"
+  menuBonusSalarial

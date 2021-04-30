@@ -1,9 +1,10 @@
 import System.Directory
 import System.IO
+import System.IO.Unsafe(unsafeDupablePerformIO)
 
 main :: IO()
 main = do
-
+    putStrLn (exibeLetreiro)
     putStrLn $ "Bem vind@!"
     putStrLn $ "Aqui vamos calcular suas finanças!\n"
     showMenu
@@ -190,7 +191,7 @@ cadastraGastoFixo = do
   putStrLn "Gasto fixo cadastrada com sucesso!!\n\n"
   hFlush file
   hClose file
-  menuCategoria
+  menuGastoFixo
 
 editaGastoFixo :: IO()
 editaGastoFixo = do
@@ -210,8 +211,8 @@ editaGastoFixo = do
   putStrLn "Gasto fixo não existe!! \nO que deseja fazer?\n"
   menuGastoFixo
 
-excluiCategoria:: IO()
-excluiCategoria = do
+excluiGastoFixo:: IO()
+excluiGastoFixo = do
  putStrLn "Digite o nome do gasto fixo a ser excluído:"
  gastoFixo <- getLine
  fileExists <- doesFileExist (gastoFixo ++ ".txt")
@@ -221,7 +222,7 @@ excluiCategoria = do
   putStrLn "Gasto fixo excluído com sucesso!!\n"
   else do
   putStrLn "Gasto fixo não existe!! \nO que deseja fazer?\n"
-  menuCategoria
+  menuGastoFixo
 
 
 -- SALARIO
@@ -338,3 +339,7 @@ jurosCompostos = do
  tempo <- getLine
  let calculo = (read capital) * 1 + (read taxa/100) ^ (read tempo)
  putStrLn ("O juro compostos é de: R$" ++ show calculo)
+
+
+exibeLetreiro :: String
+exibeLetreiro = unsafeDupablePerformIO (readFile "letreiro.txt")

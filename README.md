@@ -1,6 +1,6 @@
 <h1 color="pink">Vend!Finanças</h1>
 <div display="flex" align-items= "center">
-<img height="75px" width="75px" margin-right="20px" src= "https://image.flaticon.com/icons/png/512/1990/1990466.png">
+<img height="75px" width="75px" margin-right="20px" src= "https://img.icons8.com/doodle/48/000000/refund.png">
 <h4>Um lugar para organizar suas finanças!</h4>
 </div>
 <br>

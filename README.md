@@ -21,7 +21,7 @@
 <a href="https://github.com/samuelribeiroc">Samuel Ribeiro Costa</a>
 
 <h1>Tutorial de como rodar a aplicação: </h1>
-<p>Após fazer o clone da aplicação e entrar na pasta na pasta correspondente, rodar no terminal os seguinte comandos: </p>
+<p>Após fazer o clone da aplicação e entrar na pasta correspondente, rodar no terminal os seguinte comandos: </p>
 
 ```
 ghc --make main.hs 

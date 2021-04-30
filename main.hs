@@ -5,13 +5,13 @@ import System.IO.Unsafe(unsafeDupablePerformIO)
 main :: IO()
 main = do
     putStrLn (exibeLetreiro)
-    putStrLn $ "Bem vind@!"
+    putStrLn $ "Bem-vinde!"
     putStrLn $ "Aqui vamos calcular suas finanças!\n"
     showMenu
 
 showMenu :: IO()
 showMenu = do
-    putStrLn("Menu de navegação:")
+    putStrLn("\nMenu de navegação:")
     putStrLn("1 - Navegar por categoria")
     putStrLn("2 - Navegar por gasto fixo")
     putStrLn("3 - Navegar por salário")
@@ -25,7 +25,7 @@ showMenu = do
 
 menuCategoria :: IO()
 menuCategoria = do
-    putStrLn("Menu de Categorias:")
+    putStrLn("\nMenu de Categorias:")
     putStrLn("1 - Cadastrar categoria")
     putStrLn("2 - Adiciona gasto na categoria")
     putStrLn("3 - Excluir categoria")
@@ -35,7 +35,7 @@ menuCategoria = do
 
 menuGastoFixo :: IO()
 menuGastoFixo = do
-    putStrLn("Menu de Gastos Fixos:")
+    putStrLn("\nMenu de Gastos Fixos:")
     putStrLn("1 - Cadastrar gasto fixo")
     putStrLn("2 - Editar gasto fixo")
     putStrLn("3 - Excluir gasto fixo")
@@ -45,7 +45,7 @@ menuGastoFixo = do
 
 menuSalario :: IO()
 menuSalario = do
-    putStrLn("Menu de Salário:")
+    putStrLn("\nMenu de Salário:")
     putStrLn("1 - Cadastrar salário")
     putStrLn("2 - Editar salário")
     putStrLn("3 - Excluir salário")
@@ -55,7 +55,7 @@ menuSalario = do
 
 menuBonusSalarial :: IO()
 menuBonusSalarial = do
-    putStrLn("Menu de Bônus Salarial:")
+    putStrLn("\nMenu de Bônus Salarial:")
     putStrLn("1 - Cadastrar bônus salarial")
     putStrLn("2 - Editar bônus salarial")
     putStrLn("3 - Excluir bônus")
@@ -65,7 +65,7 @@ menuBonusSalarial = do
 
 menuInvestimento :: IO()
 menuInvestimento = do
-    putStrLn("Menu de Investimentos:")
+    putStrLn("\nMenu de Investimentos:")
     putStrLn("1 - Calcular juros simples")
     putStrLn("2 - Calcular juros compostos")
     putStrLn("3 - Voltar ao menu principal")
@@ -74,7 +74,7 @@ menuInvestimento = do
 
 menuSaldo :: IO()
 menuSaldo = do
-    putStrLn("Menu de Saldos:")
+    putStrLn("\nMenu de Saldos:")
     putStrLn("1 - Calcular saldo final mensal")
     putStrLn("2 - Calcular estimativa do saldo semestral")
     putStrLn("3 - Calcular estimativa do saldo anual")

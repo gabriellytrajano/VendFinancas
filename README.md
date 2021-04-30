@@ -1,6 +1,6 @@
-<h1 style="color:pink;">Vend!Finanças</h1>
-<div style="display: flex; align-items: center">
-<img style="height: 75px; width: 75px; margin-right: 20px" src= "https://image.flaticon.com/icons/png/512/1990/1990466.png">
+<h1 color="pink">Vend!Finanças</h1>
+<div display="flex" align-items= "center">
+<img height="75px" width="75px" margin-right="20px" src= "https://image.flaticon.com/icons/png/512/1990/1990466.png">
 <h4>Um lugar para organizar suas finanças!</h4>
 </div>
 <br>
@@ -10,11 +10,15 @@
 <h4>Linguagem usada: Haskell</h4> 
 <br>
 <h1>Alunos envolvidos no projeto: </h1>
-<p>Mariana Victoria Souza Coimbra</p>
-<p>Luanna Leonel de Farias Silva</p>
-<p>Gustavo da Costa Nóbrega Gambarra</p>
-<p>Gabrielly Trajano Amorin</p>
-<p>Samuel Ribeiro Costa</p>
+<a href="https://github.com/marianacoimbra">Mariana Victoria Souza Coimbra</a> 
+<br>
+<a href="https://github.com/LuannaLeonel">Luanna Leonel de Farias Silva</a>
+<br>
+<a href="https://github.com/gustavogambarra">Gustavo da Costa Nóbrega Gambarra</a>
+<br>
+<a href="https://github.com/gabriellytrajano">Gabrielly Trajano Amorin</a>
+<br>
+<a href="https://github.com/samuelribeiroc">Samuel Ribeiro Costa</a>
 
 <h1>Tutorial de como rodar a aplicação: </h1>
 <p>Após fazer o clone da aplicação e entrar na pasta na pasta correspondente, rodar no terminal os seguinte comandos: </p>

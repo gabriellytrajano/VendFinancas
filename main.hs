@@ -37,8 +37,8 @@ menuGastoFixo = do
     putStrLn("2 - Editar gasto fixo")
     putStrLn("3 - Excluir gasto fixo")
     putStrLn("4 - Voltar ao menu principal")
-    --opcao <- getLine
-    --chamarMenuGastoFixo opcao
+    opcao <- getLine
+    chamarMenuGastoFixo opcao
 
 menuSalario :: IO()
 menuSalario = do
@@ -63,12 +63,11 @@ menuBonusSalarial = do
 menuInvestimento :: IO()
 menuInvestimento = do
     putStrLn("Menu de Investimentos:")
-    putStrLn("1 - Cadastrar investimento")
-    putStrLn("2 - Editar investimento")
-    putStrLn("3 - Excluir investimento")
-    putStrLn("4 - Voltar ao menu principal")
-    --opcao <- getLine
-    --chamarMenuInvestimento opcao
+    putStrLn("1 - Calcular juros simples")
+    putStrLn("2 - Calcular juros compostos")
+    putStrLn("3 - Voltar ao menu principal")
+    opcao <- getLine
+    chamarMenuInvestimento opcao
 
 
 chamarMenus :: String -> IO()
@@ -88,6 +87,15 @@ chamarMenuCategoria x
     | x == "4" = showMenu
     | otherwise = putStrLn("Não é uma opção válida")
 
+chamarMenuGastoFixo :: String -> IO()
+chamarMenuGastoFixo x
+    | x == "1" = cadastraGastoFixo
+    | x == "2" = editaGastoFixo
+    | x == "3" = excluiGastoFixo
+    | x == "4" = showMenu
+    | otherwise = putStrLn("Não é uma opção válida")
+
+
 chamarMenuSalario :: String -> IO()
 chamarMenuSalario x
     | x == "1" = cadastraSalario
@@ -104,6 +112,12 @@ chamarMenuBonusSalarial x
     | x == "4" = showMenu
     | otherwise = putStrLn("Não é uma opção válida")
 
+chamarMenuInvestimento :: String -> IO()
+chamarMenuInvestimento x
+    | x == "1" = jurosSimples
+    | x == "2" = jurosCompostos
+    | x == "3" = showMenu
+    | otherwise = putStrLn("Não é uma opção válida")
 
 
 -- CATEGORIA
@@ -124,6 +138,7 @@ cadastraCategoria = do
   putStrLn "Categoria cadastrada com sucesso!!\n\n"
   hFlush file
   hClose file
+  menuCategoria
 
 editaCategoria :: IO()
 editaCategoria = do
@@ -154,6 +169,58 @@ excluiCategoria = do
   putStrLn "Categoria excluída com sucesso!!\n"
   else do
   putStrLn "Categoria não existe!! \nO que deseja fazer?\n"
+  menuCategoria
+
+
+-- GASTO FIXO
+cadastraGastoFixo :: IO()
+cadastraGastoFixo = do
+ putStrLn "Digite o nome do gasto fixo:"
+ gastoFixo <- getLine
+ fileExists <- doesFileExist (gastoFixo ++ ".txt")
+ if fileExists
+  then do
+  putStrLn "Gasto fixo já existe!!\nO que deseja fazer?\n\n"
+  menuGastoFixo
+  else do
+  file <- openFile (gastoFixo ++ ".txt") WriteMode
+  putStrLn "Digite o valor em reais do gasto fixo: "
+  valor <- getLine
+  hPutStr file valor
+  putStrLn "Gasto fixo cadastrada com sucesso!!\n\n"
+  hFlush file
+  hClose file
+  menuCategoria
+
+editaGastoFixo :: IO()
+editaGastoFixo = do
+ putStrLn "Digite o nome do gasto fixo a ser editado:"
+ gastoFixo <- getLine
+ fileExists <- doesFileExist (gastoFixo ++ ".txt")
+ if fileExists
+  then do
+  putStrLn "Digite o novo valor em reais do gasto fixo:\n"
+  valor <- getLine
+  file <- openFile (gastoFixo ++ ".txt") WriteMode
+  hPutStr file valor
+  putStrLn "Gasto fixo editado com sucesso!!\n"
+  hFlush file
+  hClose file
+  else do
+  putStrLn "Gasto fixo não existe!! \nO que deseja fazer?\n"
+  menuGastoFixo
+
+excluiCategoria:: IO()
+excluiCategoria = do
+ putStrLn "Digite o nome do gasto fixo a ser excluído:"
+ gastoFixo <- getLine
+ fileExists <- doesFileExist (gastoFixo ++ ".txt")
+ if fileExists
+  then do
+  removeFile (gastoFixo ++ ".txt")
+  putStrLn "Gasto fixo excluído com sucesso!!\n"
+  else do
+  putStrLn "Gasto fixo não existe!! \nO que deseja fazer?\n"
   menuCategoria
 
 
@@ -245,3 +312,29 @@ excluiBonusSalarial = do
   else do
   putStrLn "Ainda não foi cadastrado um bônus salarial. \nO que deseja fazer?\n"
   menuBonusSalarial
+
+
+-- INVESTIMENTO 
+
+jurosSimples:: IO()
+jurosSimples = do
+ putStrLn "Digite o capital a ser calculado: "
+ capital <- getLine
+ putStrLn "Digite a taxa a ser calculada: "
+ taxa <- getLine
+ putStrLn "Digite o tempo em meses a ser calculado: "
+ tempo <- getLine
+ let calculo = (read capital) * (read taxa/100) * (read tempo)
+ putStrLn ("O juro simples é de: R$" ++ show calculo)
+
+
+jurosCompostos:: IO()
+jurosCompostos = do
+ putStrLn "Digite o capital a ser calculado: "
+ capital <- getLine
+ putStrLn "Digite a taxa a ser calculada: "
+ taxa <- getLine
+ putStrLn "Digite o tempo em meses a ser calculado: "
+ tempo <- getLine
+ let calculo = (read capital) * 1 + (read taxa/100) ^ (read tempo)
+ putStrLn ("O juro compostos é de: R$" ++ show calculo)

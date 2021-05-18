@@ -17,7 +17,7 @@ mostraLetreiro:-
 main:- 
 	mostraLetreiro, nl,
 	apresentacao, 
-	mostraMenu.
+	mostraMenu,nl.
 	
 
 apresentacao:- 
@@ -40,7 +40,7 @@ mostraMenu:-
     Option == 4 -> menuBonusSalarial; 
     Option == 5 -> menuInvestimentos;
     Option == 6 -> menuSaldoFinal; 
-    Option == 7 -> write("Obrigado por usar o Vend!Financas *-*"), nl, halt();
+    Option == 7 -> writeln("Obrigado por usar o Vend!Financas *-*"), nl, halt();
    funcaoInvalidaFuncion,
     mostraMenu, nl, halt).
 
@@ -55,7 +55,7 @@ menuCategoria:-
     (Opcao == 1 -> categoria:cadastraCategoria;
     Opcao == 2 -> categoria:adicionaDespesaCategoria;
     Opcao == 3 -> categoria:excluiCategoria;
-    Opcao == 4 -> showMenu;
+    Opcao == 4 -> mostraMenu;
     funcaoInvalidaFuncion,
     menuCategoria).
 
@@ -70,7 +70,7 @@ menuGastoFixo:-
     (Opcao == 1 -> gastoFixo:cadastraGastoFixo;
     Opcao == 2 -> gastoFixo:editaGastoFixo;
     Opcao == 3 -> gastoFixo:excluiGastoFixo;
-    Opcao == 4 -> showMenu;
+    Opcao == 4 -> mostraMenu;
     funcaoInvalidaFuncion,
     menuGastoFixo).
 
@@ -85,7 +85,7 @@ menuSalario:-
     (Option == 1 -> salario:cadastraSalario;
     Option == 2 -> salario:editaSalario;
     Option == 3 -> salario:excluiSalario;
-    Option == 4 -> showMenu;
+    Option == 4 -> mostraMenu;
     funcaoInvalidaFuncion, 
     menuSalario).
 
@@ -100,7 +100,7 @@ menuBonusSalarial:-
     (Option == 1 -> bonusSalarial:cadastraBonusSalarial;
     Option == 2 -> bonusSalarial:editaBonusSalarial;
     Option == 3 -> bonusSalarial:excluiBonusSalarial;
-    Option == 4 -> showMenu;
+    Option == 4 -> mostraMenu;
     funcaoInvalidaFuncion, 
     menuBonusSalarial).
 
@@ -113,7 +113,7 @@ menuInvestimentos:-
     read(Option),
     (Option == 1 -> investimentos:jurosSimples;
     Option == 2 -> investimentos:jurosCompostos;
-    Option == 3 -> showMenu;
+    Option == 3 -> mostraMenu;
     funcaoInvalidaFuncion,
     menuInvestimentos).
 
@@ -128,7 +128,7 @@ menuSaldoFinal:-
     (Option == 1 -> saldoFinal:saldoMensal;
     Option == 2 -> saldoFinal:estimativaSemestral;
     Option == 3 -> saldoFinal:estimativaAnual;
-    Option == 4 -> showMenu; 
+    Option == 4 -> mostraMenu; 
     funcaoInvalidaFuncion, 
     menuSaldoFinal).
 

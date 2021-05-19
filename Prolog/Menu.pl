@@ -15,6 +15,7 @@ mostraLetreiro:-
 
 
 main:- 
+    tty_clear,
 	mostraLetreiro, nl,
 	apresentacao, 
 	mostraMenu,nl.

@@ -1,7 +1,23 @@
 :-module(investimentos, [jurosSimples/0, jurosCompostos/0]).
 
 jurosSimples:-
-	write("kasjdkajsd fodasseeee").
+	write("Digite o capital a ser calculado: "), nl,
+    read(Capital),
+    write("Digite a taxa a ser calculada: "), nl,
+    read(Taxa),
+    write("Digite o tempo em meses a ser calculado: "),nl,
+    read(Tempo),
+    Res is ((Capital * (Taxa/100))/Tempo),
+    write("O montante total do seu investimento é de: R$"),
+    write(Res),nl.
 
 jurosCompostos:-
-	write("que ódio só gosto de gente chata").
+	write("Digite o capital a ser calculado: "), nl,
+    read(Capital),
+    write("Digite a taxa a ser calculada: "), nl,
+    read(Taxa),
+    write("Digite o tempo em meses a ser calculado: "),nl,
+    read(Tempo),
+    Res is (Capital * ((1 + (Taxa/100))^Tempo)),
+    write("O montante total do seu investimento é de: R$"),
+    write(Res),nl.

@@ -15,7 +15,7 @@ mostraLetreiro:-
 
 
 main:- 
-	mostraLetreiro, nl,
+    tty_clear,
 	apresentacao, 
 	mostraMenu,nl.
 	
@@ -25,6 +25,7 @@ apresentacao:-
 	writeln("Aqui vamos calcular suas finanças!"), nl.
 
 mostraMenu:- 
+    mostraLetreiro, nl,
 	writeln("Menu de navegação:"),
     writeln("1 - Navegar por categoria"),
     writeln("2 - Navegar por gasto fixo"),
@@ -111,9 +112,9 @@ menuInvestimentos:-
     writeln("2 - Calcular juros compostos"),
     writeln("3 - Voltar ao menu principal"),
     read(Option),
-    (Option == 1 -> investimentos:jurosSimples;
-    Option == 2 -> investimentos:jurosCompostos;
-    Option == 3 -> mostraMenu;
+    (Option == 1 -> investimentos:jurosSimples, menuInvestimentos;
+    Option == 2 -> investimentos:jurosCompostos, menuInvestimentos;
+    Option == 3 -> tty_clear, mostraMenu;
     funcaoInvalidaFuncion,
     menuInvestimentos).
 

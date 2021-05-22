@@ -5,7 +5,7 @@
 :- use_module("investimentos").
 :- use_module("saldoFinal").
 
-mostraLetreiro:-
+mostraLetreiro :-
     writeln(" _   _                   _  _ ______  _                                        "),                                       
     writeln("| | | |                 | || ||  ___|(_)                                       "),
     writeln("| | | |  ___  _ __    __| || || |_    _  _ __    __ _  _ __    ___   __ _  ___ "),
@@ -14,17 +14,17 @@ mostraLetreiro:-
     writeln(" \\___/  \\___||_| |_| \\__,_|(_)\\_|    |_||_| |_| \\__,_||_| |_| \\___| \\__,_||___/").
 
 
-main:- 
+main :- 
     tty_clear,
 	apresentacao, 
 	mostraMenu,nl.
 	
 
-apresentacao:- 
+apresentacao :- 
 	writeln("Bem-vinde!"), 
 	writeln("Aqui vamos calcular suas finanças!"), nl.
 
-mostraMenu:- 
+mostraMenu :- 
     mostraLetreiro, nl,
 	writeln("Menu de navegação:"),
     writeln("1 - Navegar por categoria"),
@@ -46,7 +46,7 @@ mostraMenu:-
     mostraMenu, nl, halt).
 
 
-menuCategoria:-
+menuCategoria :-
     writeln("Menu de Categorias:"),
     writeln("1 - Cadastrar categoria"),
     writeln("2 - Adiciona gasto na categoria"),
@@ -61,7 +61,7 @@ menuCategoria:-
     menuCategoria).
 
 
-menuGastoFixo:- 
+menuGastoFixo :- 
 	writeln("Menu de Gastos Fixos:"),
     writeln("1 - Cadastrar gasto fixo"),
     writeln("2 - Editar gasto fixo"),
@@ -76,22 +76,24 @@ menuGastoFixo:-
     menuGastoFixo).
 
 
-menuSalario:- 
+menuSalario :- 
 	writeln("Menu de Salário:"),
     writeln("1 - Cadastrar salário"),
     writeln("2 - Editar salário"),
     writeln("3 - Excluir salário"),
-    writeln("4 - Voltar ao menu principal"),
+    writeln("4 - Exibir salário"),
+    writeln("5 - Voltar ao menu principal"),
     read(Option),
-    (Option == 1 -> salario:cadastraSalario;
-    Option == 2 -> salario:editaSalario;
-    Option == 3 -> salario:excluiSalario;
-    Option == 4 -> mostraMenu;
+    (Option == 1 -> salario:cadastraSalario,menuSalario;
+    Option == 2 -> salario:editaSalario,menuSalario;
+    Option == 3 -> salario:excluiSalario,menuSalario;
+    Option == 4 -> salario:mostraSalario,menuSalario;
+    Option == 5 -> mostraMenu;
     funcaoInvalidaFuncion, 
     menuSalario).
 
 
-menuBonusSalarial:- 
+menuBonusSalarial :- 
 	writeln("Menu de Bônus Salarial:"),
     writeln("1 - Cadastrar bônus salarial"),
     writeln("2 - Editar bônus salarial"),
@@ -106,7 +108,7 @@ menuBonusSalarial:-
     menuBonusSalarial).
 
 
-menuInvestimentos:- 
+menuInvestimentos :- 
 	writeln("Menu de Investimentos:"),
     writeln("1 - Calcular juros simples"),
     writeln("2 - Calcular juros compostos"),
@@ -119,7 +121,7 @@ menuInvestimentos:-
     menuInvestimentos).
 
 
-menuSaldoFinal:-
+menuSaldoFinal :-
 	writeln("Menu de Saldos:"),
     writeln("1 - Calcular saldo final mensal"),
     writeln("2 - Calcular estimativa do saldo semestral"),
@@ -134,5 +136,5 @@ menuSaldoFinal:-
     menuSaldoFinal).
 
 
-funcaoInvalidaFuncion:-
+funcaoInvalidaFuncion :-
 	 writeln("Opcao invalida :( "),nl.

@@ -16,14 +16,14 @@ cadastraSalario :-
 
 mostraSalario :- 
 	salary(X),
-	(X == 0) -> write("Ainda não foi cadastrado um salário."),nl,write("O que deseja fazer?"),nl;
+	(X == 0) -> write("Ainda não foi cadastrado um salário."),nl,write("O que deseja fazer?"), nl;
 	write("Seu Salário é R$"),
 	salary(X),
-	write(X),nl.
+	write(X), nl.
 
 editaSalario :- 
 	salary(X),
-	(X == 0) -> write("Ainda não foi cadastrado um salário."),nl,write("O que deseja fazer?"),nl;
+	(X == 0) -> write("Ainda não foi cadastrado um salário."),nl,write("O que deseja fazer?"), nl;
 	write("Digite o novo valor do seu salário em reais:"), nl,
 	read(NovoSalario),
 	retractall(salary(_)),
@@ -32,7 +32,7 @@ editaSalario :-
 
 excluiSalario :- 
 	salary(X),
-	(X == 0) -> write("Ainda não foi cadastrado um salário."),nl,write("O que deseja fazer?"),nl;
+	(X == 0) -> write("Ainda não foi cadastrado um salário."),nl,write("O que deseja fazer?"), nl;
 	retractall(salary(_)),
 	asserta(salary(0)),
 	write("Salário excluído com sucesso!!").

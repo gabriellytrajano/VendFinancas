@@ -1,0 +1,4 @@
+
+:- dynamic salary/1.
+
+

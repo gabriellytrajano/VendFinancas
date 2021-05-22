@@ -84,10 +84,10 @@ menuSalario :-
     writeln("4 - Exibir salário"),
     writeln("5 - Voltar ao menu principal"),
     read(Option),
-    (Option == 1 -> salario:cadastraSalario,menuSalario;
-    Option == 2 -> salario:editaSalario,menuSalario;
-    Option == 3 -> salario:excluiSalario,menuSalario;
-    Option == 4 -> salario:mostraSalario,menuSalario;
+    (Option == 1 -> salario:cadastraSalario, nl,menuSalario;
+    Option == 2 -> salario:editaSalario,nl,menuSalario;
+    Option == 3 -> salario:excluiSalario,nl,menuSalario;
+    Option == 4 -> salario:mostraSalario,nl,menuSalario;
     Option == 5 -> mostraMenu;
     funcaoInvalidaFuncion, 
     menuSalario).

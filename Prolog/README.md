@@ -2,6 +2,7 @@
 <p>Após fazer o clone da aplicação e entrar na pasta correspondente, escreva no terminal os seguinte comandos: </p>
 
 ```pl
-swipl
+swipl Menu.pl
+
 main.
 ```

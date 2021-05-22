@@ -31,15 +31,15 @@ cadastraSalario :-
 mostraSalario :- 
 	setup_bd,
 	salary(X),
-	(X == 0) -> write("Ainda não foi cadastrado um salário."),nl,write("O que deseja fazer?"),nl;
+	(X == 0) -> write("Ainda não foi cadastrado um salário."),nl,write("O que deseja fazer?"), nl;
 	write("Seu Salário é R$"),
 	salary(X),
-	write(X),nl.
+	write(X), nl.
 
 editaSalario :- 
 	setup_bd,
 	salary(X),
-	(X == 0) -> write("Ainda não foi cadastrado um salário."),nl,write("O que deseja fazer?"),nl;
+	(X == 0) -> write("Ainda não foi cadastrado um salário."),nl,write("O que deseja fazer?"), nl;
 	write("Digite o novo valor do seu salário em reais:"), nl,
 	read(NV),
 	write_salary(NV),
@@ -49,7 +49,6 @@ excluiSalario :-
 	setup_bd,
 	salary(X),
 	(X == 0) -> write("Ainda não foi cadastrado um salário."),nl,write("O que deseja fazer?"),nl;
-
 	write_salary(0),
 	write("Salário excluído com sucesso!!").
 

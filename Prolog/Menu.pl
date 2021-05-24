@@ -56,7 +56,7 @@ menuCategoria :-
     read(Opcao),
     (Opcao == 1 -> tty_clear,categoria:cadastraCategoria, menuCategoria;
     Opcao == 2 -> tty_clear,categoria:adicionaDespesaCategoria, menuCategoria;
-    Opcao == 3 -> tty_clear, categoria:deleteCategoria , menuCategoria;
+    Opcao == 3 -> tty_clear,categoria:deletaCategoria, menuCategoria;
     Opcao == 4 -> tty_clear,categoria:listaCategorias, menuCategoria;
     Opcao == 5 -> tty_clear,mostraMenu;
     funcaoInvalidaFuncion,

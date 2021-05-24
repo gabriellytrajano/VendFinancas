@@ -1,5 +1,7 @@
-:-module(categoria, [cadastraCategoria/0, adicionaDespesaCategoria/0,
-					 deleteCategoria/0, listaCategorias/0]).
+:-module(categoria, [cadastraCategoria/0,
+					adicionaDespesaCategoria/0,
+					listaCategorias/0, 
+					deletaCategoria/0]).
 
 :- use_module(library(apply)).
 :- use_module(library(csv)).
@@ -37,7 +39,7 @@ edita_categoria(N,V) :-
         told,
 	nl,writeln("Valor adicionado com sucesso!"),nl.	
 
-cadastraCategoria:-
+cadastraCategoria :-
 	nl,write("Digite o nome da categoria a ser cadastrada:"), nl,
 	read(Nome),
 	nl,write("Digite o valor da categoria a ser cadastrada:"), nl,
@@ -45,7 +47,7 @@ cadastraCategoria:-
 	cadastra_categoria(Nome, Valor).
 
 
-adicionaDespesaCategoria:- 
+adicionaDespesaCategoria :- 
 	nl,write("Digite o nome da categoria à qual será adicionado o valor:"), nl,
 	read(Nome),
 	nl,write("Digite o valor a ser adicionado:"), nl,
@@ -54,14 +56,14 @@ adicionaDespesaCategoria:-
 	(categoria(Nome,_)) -> edita_categoria(Nome, NovoValor);
 	nl,write("Essa categoria não existe. Tente novamente."), nl.
 
-deleteCategoria :- 
+deletaCategoria :-
 	nl,write("Digite o nome da categoria que deseja excluir:"), nl,
 	read(Nome),
-	(categoria(Nome,_)) -> retract(categoria(Nome,_), write_cat_file;
-	nl,write("Essa categoria não existe. Tente novamente."), nl.
+	setup_bd,
+	(categoria(Nome,_)) -> retract(categoria(Nome,_)), write_cat_file, writeln("Excluída com sucesso :) ");
+	write("Essa categoria não existe. Tente novamente."), nl.
 
-
-listaCategorias:- 
+listaCategorias :- 
 	nl,show_categorias,nl.
 
 show_categorias :-
@@ -79,5 +81,5 @@ print_categorias([Head|Tail], Index) :-
 
 get_categorias(Result):-
     setup_bd,
-    findall(Nome, categoria(Nome, Valor), Queries),
+    findall(Nome, categoria(Nome,_), Queries),
     list_to_set(Queries, Result).

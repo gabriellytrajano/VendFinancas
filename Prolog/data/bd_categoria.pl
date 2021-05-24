@@ -1,7 +1,7 @@
 
 :- dynamic categoria/2.
 
-categoria(mariana, 1231232).
-categoria(agua, 111111111).
-categoria(energia, 111111111).
+categoria(eletronicos, 2000).
+categoria(alimentação, 500).
+categoria(luz, 100).
 

@@ -1,5 +1,5 @@
-:-module(categoria, [cadastraCategoria/0, adicionaDespesaCategoria/0, 
-	excluiCategoria/0, listaCategorias/0]).
+:-module(categoria, [cadastraCategoria/0, adicionaDespesaCategoria/0,
+					 deleteCategoria/0, listaCategorias/0]).
 
 :- use_module(library(apply)).
 :- use_module(library(csv)).
@@ -26,11 +26,16 @@ write_cat_file :-
 	listing(categoria/2),
 	told.
 
-adicionaDespesa_categoria(N,V) :-
+edita_categoria(N,V) :-
 	setup_bd,
-	(categoria(N,_)) -> ;
-	write_cat(N,V),
-	nl,writeln("Categoria edita com sucesso :)"),nl.	
+	categoria(N,X),
+	Y is X + V,
+	retract(categoria(N,X)),
+	assertz(categoria(N,Y)),
+	tell('./data/bd_categoria.pl'), nl,
+        listing(categoria/2),
+        told,
+	nl,writeln("Valor adicionado com sucesso!"),nl.	
 
 cadastraCategoria:-
 	nl,write("Digite o nome da categoria a ser cadastrada:"), nl,
@@ -41,14 +46,20 @@ cadastraCategoria:-
 
 
 adicionaDespesaCategoria:- 
-	nl,write("Digite o nome da categoria a ser editada:"), nl,
+	nl,write("Digite o nome da categoria à qual será adicionado o valor:"), nl,
 	read(Nome),
-	nl,write("Digite o valor da categoria a ser editado:"), nl,
+	nl,write("Digite o valor a ser adicionado:"), nl,
 	read(NovoValor),
-	adicionaDespesa_categoria(Nome, NovoValor).
+	setup_bd,
+	(categoria(Nome,_)) -> edita_categoria(Nome, NovoValor);
+	nl,write("Essa categoria não existe. Tente novamente."), nl.
 
-excluiCategoria:- 
-	write("kasjdkajsd").
+deleteCategoria :- 
+	nl,write("Digite o nome da categoria que deseja excluir:"), nl,
+	read(Nome),
+	(categoria(Nome,_)) -> retract(categoria(Nome,_), write_cat_file;
+	nl,write("Essa categoria não existe. Tente novamente."), nl.
+
 
 listaCategorias:- 
 	nl,show_categorias,nl.

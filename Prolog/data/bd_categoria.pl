@@ -1,2 +1,4 @@
+
 :- dynamic categoria/2.
+
 

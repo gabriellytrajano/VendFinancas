@@ -53,7 +53,7 @@ menuCategoria :-
     writeln("3 - Excluir categoria"),
     writeln("4 - Voltar ao menu principal"),
     read(Opcao),
-    (Opcao == 1 -> categoria:cadastraCategoria;
+    (Opcao == 1 -> tty_clear,categoria:cadastraCategoria, menuCategoria;
     Opcao == 2 -> categoria:adicionaDespesaCategoria;
     Opcao == 3 -> categoria:excluiCategoria;
     Opcao == 4 -> mostraMenu;
@@ -84,11 +84,11 @@ menuSalario :-
     writeln("4 - Exibir salário"),
     writeln("5 - Voltar ao menu principal"),
     read(Option),
-    (Option == 1 -> salario:cadastraSalario, nl,menuSalario;
-    Option == 2 -> salario:editaSalario,nl,menuSalario;
-    Option == 3 -> salario:excluiSalario,nl,menuSalario;
-    Option == 4 -> salario:mostraSalario,nl,menuSalario;
-    Option == 5 -> mostraMenu;
+    (Option == 1 -> tty_clear,salario:cadastraSalario, nl,menuSalario;
+    Option == 2 -> tty_clear,salario:editaSalario,nl,menuSalario;
+    Option == 3 -> tty_clear,salario:excluiSalario,nl,menuSalario;
+    Option == 4 -> tty_clear,salario:mostraSalario,nl,menuSalario;
+    Option == 5 -> tty_clear,mostraMenu;
     funcaoInvalidaFuncion, 
     menuSalario).
 
@@ -98,12 +98,14 @@ menuBonusSalarial :-
     writeln("1 - Cadastrar bônus salarial"),
     writeln("2 - Editar bônus salarial"),
     writeln("3 - Excluir bônus"),
-    writeln("4 - Voltar ao menu principal"),
+    writeln("4 - Exibir Bônus"),
+    writeln("5 - Voltar ao menu principal"),
     read(Option),
-    (Option == 1 -> bonusSalarial:cadastraBonusSalarial;
-    Option == 2 -> bonusSalarial:editaBonusSalarial;
-    Option == 3 -> bonusSalarial:excluiBonusSalarial;
-    Option == 4 -> mostraMenu;
+    (Option == 1 -> tty_clear,bonusSalarial:cadastraBonusSalarial,nl,menuBonusSalarial;
+    Option == 2 -> tty_clear,bonusSalarial:editaBonusSalarial,nl,menuBonusSalarial;
+    Option == 3 -> tty_clear,bonusSalarial:excluiBonusSalarial,nl,menuBonusSalarial;
+    Option == 4 -> tty_clear,bonusSalarial:listaBonusSalarial,nl,menuBonusSalarial;
+    Option == 5 -> tty_clear,mostraMenu;
     funcaoInvalidaFuncion, 
     menuBonusSalarial).
 
@@ -114,8 +116,8 @@ menuInvestimentos :-
     writeln("2 - Calcular juros compostos"),
     writeln("3 - Voltar ao menu principal"),
     read(Option),
-    (Option == 1 -> investimentos:jurosSimples, menuInvestimentos;
-    Option == 2 -> investimentos:jurosCompostos, menuInvestimentos;
+    (Option == 1 -> tty_clear,investimentos:jurosSimples, menuInvestimentos;
+    Option == 2 -> tty_clear,investimentos:jurosCompostos, menuInvestimentos;
     Option == 3 -> tty_clear, mostraMenu;
     funcaoInvalidaFuncion,
     menuInvestimentos).

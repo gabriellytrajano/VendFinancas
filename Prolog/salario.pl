@@ -6,53 +6,46 @@
 :- use_module(library(apply)).
 :- use_module(library(csv)).
 
-
 setup_bd :-
 	consult('./data/bd_salario.pl').
 
 write_salary(Valor):-
-	setup_bd,
-	retractall(salary(_)),
-	assertz(salary(Valor)),
-	write_salary_file.
-
-write_salary_file :-
-	setup_bd,
-		tell('./data/bd_salario.pl'),nl,
-		listing(salary/1),
-		told.
+	open('./data/bd_salario.pl', write, S),
+	write(S,':-dynamic salary/1.'),
+	nl(S),
+	write(S,Valor),
+	put_char(S,.),
+	close(S).
 
 cadastraSalario :- 
 	write("Digite o valor do seu salário em reais:"), nl,
 	read(Salario),
-	write_salary(Salario),
+	assertz(salary(Salario)),
+	write_salary(salary(Salario)),
 	write("Salário cadastrado com sucesso!!"), nl.
 
 mostraSalario :- 
 	setup_bd,
 	salary(X),
-	(X == 0) -> write("Ainda não foi cadastrado um salário."),nl,write("O que deseja fazer?"), nl;
-	write("Seu Salário é R$"),
+	nl,(X = 0) -> write("Salário inexistente, cadastre um."),nl;
 	salary(X),
+	nl,write("Seu Salário é R$"),
 	write(X), nl.
 
 editaSalario :- 
 	setup_bd,
 	salary(X),
-	(X == 0) -> write("Ainda não foi cadastrado um salário."),nl,write("O que deseja fazer?"), nl;
-	write("Digite o novo valor do seu salário em reais:"), nl,
-	read(NV),
-	write_salary(NV),
-	write("Novo Salário cadastrado com sucesso!!"), nl.
+	nl,(X = 0) -> write("Salário inexistente, cadastre um."),nl;
+	write("Digite o valor do seu novo salário em reais:"), nl,
+	read(Salario),
+	assertz(salary(Salario)),
+	write_salary(salary(Salario)),
+	write("Salário atualizado com sucesso!!"), nl.
 
 excluiSalario :- 
 	setup_bd,
 	salary(X),
 	(X == 0) -> write("Ainda não foi cadastrado um salário."),nl,write("O que deseja fazer?"),nl;
-	write_salary(0),
-	write("Salário excluído com sucesso!!").
+	write_salary(salary(0)),
+	nl,write("Salário zerado com sucesso!!"),nl.
 
-getValor(Valor) :-
-	setup_bd,
-	salary(X),
-	Valor is X.

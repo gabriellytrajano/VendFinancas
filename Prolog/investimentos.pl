@@ -8,6 +8,7 @@ jurosSimples:-
     write("Digite o tempo em meses a ser calculado: "),nl,
     read(Tempo),
     Res is ((Capital * (Taxa/100))/Tempo),
+    tty_clear,
     write("O montante total do seu investimento é de: R$"),
     write(Res),nl.
 
@@ -19,5 +20,6 @@ jurosCompostos:-
     write("Digite o tempo em meses a ser calculado: "),nl,
     read(Tempo),
     Res is (Capital * ((1 + (Taxa/100))^Tempo)),
+    tty_clear,
     write("O montante total do seu investimento é de: R$"),
     write(Res),nl.

@@ -1,5 +1,5 @@
-:-module(bonusSalarial, [listaBonusSalarial/0, cadastraBonusSalarial/1,
-	excluiBonusSalarial/0, editaBonusSalarial/1]).
+:-module(bonusSalarial, [listaBonusSalarial/0, cadastraBonusSalarial/0,
+	excluiBonusSalarial/0, editaBonusSalarial/0]).
 
 :- use_module(library(apply)).
 :- use_module(library(csv)).
@@ -30,11 +30,10 @@ listaBonusSalarial:-
 	nl,write("Seu Bônus salarial é: R$"),
 	write(X), nl.
 
-
 excluiBonusSalarial:- 
 	setup_bd,
 	bonus(X),
-	(X == 0) -> write("Ainda não foi cadastrado um bônus salarial."),nl,write("O que deseja fazer?"),nl;
+	(X = 0) -> write("Ainda não foi cadastrado um bônus salarial."),nl,write("O que deseja fazer?"),nl;
 	write_bonus(bonus(0)),
 	nl,write("Bônus Salarial zerado com sucesso!!"),nl.
 

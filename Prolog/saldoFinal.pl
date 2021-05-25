@@ -11,7 +11,7 @@ estimativaSemestral(Salario, Bonus, Categorias, Fixos):-
 	write("O valor total cadastrado nos gastos fixos eh de: R$"),
 	write(Fixos), nl,
 	SaldoMensal is (Salario + Bonus - Categorias - Fixos) * 6,
-	write("Com os valores atuais, seu saldo deste mês eh de: R$"),
+	write("Com os valores atuais, seu saldo em 6 meses sera de: R$"),
 	write(SaldoMensal), nl.
 
 estimativaAnual(Salario, Bonus, Categorias, Fixos):- 
@@ -24,7 +24,7 @@ estimativaAnual(Salario, Bonus, Categorias, Fixos):-
 	write("O valor total cadastrado nos gastos fixos eh de: R$"),
 	write(Fixos), nl,
 	SaldoMensal is (Salario + Bonus - Categorias - Fixos) * 12,
-	write("Com os valores atuais, seu saldo deste mês eh de: R$"),
+	write("Com os valores atuais, seu saldo em 1 ano sera de: R$"),
 	write(SaldoMensal), nl.
 
 saldoMensal(Salario, Bonus, Categorias, Fixos):- 

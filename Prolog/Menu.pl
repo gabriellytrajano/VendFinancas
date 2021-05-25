@@ -51,7 +51,7 @@ menuCategoria :-
     writeln("1 - Cadastrar categoria"),
     writeln("2 - Adiciona gasto na categoria"),
     writeln("3 - Excluir categoria"),
-    writeln("4 - Exibir categoria"),
+    writeln("4 - Exibir categorias"),
     writeln("5 - Voltar ao menu principal"),
     read(Opcao),
     (Opcao == 1 -> tty_clear,categoria:cadastraCategoria, menuCategoria;

@@ -72,21 +72,27 @@ deleta_gastofixo(Nome):-
 listaGastoFixo:- 
 	nl,show_gastofixo,nl.
 
-
 show_gastofixo :-
     get_gastofixo(Result),
-    print_gastofixo(Result, 1).
+    get_gastofixoV(Result2),
+    print_gastofixo(Result, Result2, 1).
 
-print_gastofixo([], _).
-print_gastofixo([Head|Tail], Index) :-
-    string_concat(" ", Index, SpacesAndIndex),
-    string_concat(SpacesAndIndex, " - ", SpacesIndexAndDash),
-    string_concat(SpacesIndexAndDash, Head, CompleteString),
-    writeln(CompleteString),
+print_gastofixo([], [], _).
+print_gastofixo([Head|Tail],[Head1|Tail1], Index) :-
+ 	string_concat(Index, "- Gasto Fixo: ", SpacesAndIndex),
+ 	string_concat(SpacesAndIndex, Head, SpacesAndHead),
+ 	string_concat(SpacesAndHead, " - Valor: R$", SpacesAndHeadSpace),
+    string_concat(SpacesAndHeadSpace, Head1, SpacesAndHead1),
+    writeln(SpacesAndHead1),
     Index1 is Index + 1,
-    print_gastofixo(Tail, Index1).
+    print_gastofixo(Tail, Tail1, Index1).
 
 get_gastofixo(Result):-
     setup_bd,
     findall(Nome, gastofixo(Nome,_), Queries),
+    list_to_set(Queries, Result).
+
+get_gastofixoV(Result):-
+    setup_bd,
+    findall(Nome, gastofixo(_,Nome), Queries),
     list_to_set(Queries, Result).

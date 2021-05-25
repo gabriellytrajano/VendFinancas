@@ -75,18 +75,25 @@ listaCategorias :-
 
 show_categorias :-
     get_categorias(Result),
-    print_categorias(Result, 1).
+     get_categoriasV(Result2),
+    print_categorias(Result, Result2, 1).
 
-print_categorias([], _).
-print_categorias([Head|Tail], Index) :-
-    string_concat(" ", Index, SpacesAndIndex),
-    string_concat(SpacesAndIndex, " - ", SpacesIndexAndDash),
-    string_concat(SpacesIndexAndDash, Head, CompleteString),
-    writeln(CompleteString),
+print_categorias([], [], _).
+print_categorias([Head|Tail], [Head1|Tail1], Index) :-
+    string_concat(Index, "- Categoria: ", SpacesAndIndex),
+ 	string_concat(SpacesAndIndex, Head, SpacesAndHead),
+ 	string_concat(SpacesAndHead, " - Valor: R$", SpacesAndHeadSpace),
+    string_concat(SpacesAndHeadSpace, Head1, SpacesAndHead1),
+    writeln(SpacesAndHead1),
     Index1 is Index + 1,
-    print_categorias(Tail, Index1).
+    print_categorias(Tail, Tail1, Index1).
 
 get_categorias(Result):-
     setup_bd,
     findall(Nome, categoria(Nome,_), Queries),
+    list_to_set(Queries, Result).
+
+get_categoriasV(Result):-
+    setup_bd,
+    findall(Valor, categoria(_,Valor), Queries),
     list_to_set(Queries, Result).

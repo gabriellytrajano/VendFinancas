@@ -1,4 +1,2 @@
 
 :- dynamic gastofixo/2.
-
-

@@ -60,8 +60,15 @@ deletaCategoria :-
 	nl,write("Digite o nome da categoria que deseja excluir:"), nl,
 	read(Nome),
 	setup_bd,
-	(categoria(Nome,_)) -> retract(categoria(Nome,_)), write_cat_file, writeln("Excluída com sucesso :) ");
+	(categoria(Nome,_)) -> deleta_cat(Nome), writeln("Categoria excluída com sucesso! :) ");
 	write("Essa categoria não existe. Tente novamente."), nl.
+
+deleta_cat(Nome):-
+	setup_bd, 
+	retract(categoria(Nome,_)),
+	tell('./data/bd_categoria.pl'), nl,
+		listing(categoria/2),
+		told.
 
 listaCategorias :- 
 	nl,show_categorias,nl.

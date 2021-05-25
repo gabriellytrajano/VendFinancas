@@ -68,12 +68,14 @@ menuGastoFixo :-
     writeln("1 - Cadastrar gasto fixo"),
     writeln("2 - Editar gasto fixo"),
     writeln("3 - Excluir gasto fixo"),
-    writeln("4 - Voltar ao menu principal"),
+    writeln("4 - Exibir gasto fixo"),
+    writeln("5 - Voltar ao menu principal"),
     read(Opcao),
-    (Opcao == 1 -> gastoFixo:cadastraGastoFixo;
-    Opcao == 2 -> gastoFixo:editaGastoFixo;
-    Opcao == 3 -> gastoFixo:excluiGastoFixo;
-    Opcao == 4 -> mostraMenu;
+    (Opcao == 1 -> tty_clear,gastoFixo:cadastraGastoFixo, menuGastoFixo;
+    Opcao == 2 -> tty_clear,gastoFixo:editaGastoFixo, menuGastoFixo;
+    Opcao == 3 -> tty_clear,gastoFixo:excluiGastoFixo, menuGastoFixo;
+    Opcao == 4 -> tty_clear,gastoFixo:listaGastoFixo, menuGastoFixo;
+    Opcao == 5 -> tty_clear,mostraMenu;
     funcaoInvalidaFuncion,
     menuGastoFixo).
 

@@ -1,2 +1,2 @@
 :-dynamic salary/1.
-salary(0).
+salary(600).

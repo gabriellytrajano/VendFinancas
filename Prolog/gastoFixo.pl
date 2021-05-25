@@ -39,14 +39,14 @@ edita_gastofixo(N,V) :-
 	nl,writeln("Gasto Fixo editado com sucesso!"),nl.	
 
 cadastraGastoFixo:- 
-	nl,write("Digite o nome do Gasto Fixo a ser cadastrado:"), nl,
+	nl,write("Digite o nome do Gasto Fixo a ser cadastrado(se for mais de uma palavra digite entre aspas):"), nl,
 	read(Nome),
 	nl,write("Digite o valor do Gasto Fixo a ser cadastrado:"), nl,
 	read(Valor),
 	cadastra_gastofixo(Nome, Valor).
 
 editaGastoFixo:- 
-	nl,write("Digite o nome do Gasto Fixo a ser editado:"), nl,
+	nl,write("Digite o nome do Gasto Fixo a ser editado(se for mais de uma palavra digite entre aspas):"), nl,
 	read(Nome),
 	nl,write("Digite o valor a ser alterado:"), nl,
 	read(NovoValor),
@@ -55,7 +55,7 @@ editaGastoFixo:-
 	nl,write("Essa Gasto Fixo não existe. Tente novamente."), nl.
 
 excluiGastoFixo:- 
-	nl,write("Digite o nome do Gasto Fixo que deseja excluir:"), nl,
+	nl,write("Digite o nome do Gasto Fixo que deseja excluir(se for mais de uma palavra digite entre aspas):"), nl,
 	read(Nome),
 	setup_bd,
 	(gastofixo(Nome,_)) -> deleta_gastofixo(Nome), nl,writeln("Gasto Fixo excluído com sucesso! :) "),nl;

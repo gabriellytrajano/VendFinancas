@@ -40,7 +40,7 @@ edita_categoria(N,V) :-
 	nl,writeln("Valor adicionado com sucesso!"),nl.	
 
 cadastraCategoria :-
-	nl,write("Digite o nome da categoria a ser cadastrada:"), nl,
+	nl,write("Digite o nome da categoria a ser cadastrada(se for mais de uma palavra digite entre aspas):"), nl,
 	read(Nome),
 	nl,write("Digite o valor da categoria a ser cadastrada:"), nl,
 	read(Valor),
@@ -48,7 +48,7 @@ cadastraCategoria :-
 
 
 adicionaDespesaCategoria :- 
-	nl,write("Digite o nome da categoria à qual será adicionado o valor:"), nl,
+	nl,write("Digite o nome da categoria à qual será adicionado o valor(se for mais de uma palavra digite entre aspas):"), nl,
 	read(Nome),
 	nl,write("Digite o valor a ser adicionado:"), nl,
 	read(NovoValor),
@@ -57,7 +57,7 @@ adicionaDespesaCategoria :-
 	nl,write("Essa categoria não existe. Tente novamente."), nl.
 
 deletaCategoria :-
-	nl,write("Digite o nome da categoria que deseja excluir:"), nl,
+	nl,write("Digite o nome da categoria que deseja excluir(se for mais de uma palavra digite entre aspas):"), nl,
 	read(Nome),
 	setup_bd,
 	(categoria(Nome,_)) -> deleta_cat(Nome), writeln("Categoria excluída com sucesso! :) ");

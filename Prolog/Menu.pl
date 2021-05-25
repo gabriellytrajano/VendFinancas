@@ -134,10 +134,10 @@ menuSaldoFinal :-
     writeln("3 - Calcular estimativa do saldo anual"),
     writeln("4 - Voltar ao menu principal"),
     read(Option),
-    (Option == 1 -> saldoFinal:saldoMensal;
-    Option == 2 -> saldoFinal:estimativaSemestral;
-    Option == 3 -> saldoFinal:estimativaAnual;
-    Option == 4 -> mostraMenu; 
+    (Option == 1 ->  tty_clear,saldoFinal:saldoMensal, menuSaldoFinal;
+    Option == 2 ->  tty_clear,saldoFinal:estimativaSemestral, menuSaldoFinal;
+    Option == 3 ->  tty_clear,saldoFinal:estimativaAnual, menuSaldoFinal;
+    Option == 4 ->  tty_clear,mostraMenu; 
     funcaoInvalidaFuncion, 
     menuSaldoFinal).
 

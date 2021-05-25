@@ -1,5 +1,5 @@
 :-module(bonusSalarial, [listaBonusSalarial/0, cadastraBonusSalarial/0,
-	excluiBonusSalarial/0, editaBonusSalarial/0]).
+	excluiBonusSalarial/0, editaBonusSalarial/0, valorBonus/1]).
 
 :- use_module(library(apply)).
 :- use_module(library(csv)).
@@ -46,3 +46,8 @@ editaBonusSalarial:-
 	assertz(bonus(Bonus)),
 	write_bonus(bonus(Bonus)),
 	write("Bônus Salarial atualizado com sucesso!!"), nl.
+
+valorBonus(Valor) :-
+	setup_bd,
+	bonus(X),
+	Valor is X.

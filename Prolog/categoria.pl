@@ -1,7 +1,8 @@
 :-module(categoria, [cadastraCategoria/0,
 					adicionaDespesaCategoria/0,
 					listaCategorias/0, 
-					deletaCategoria/0]).
+					deletaCategoria/0,
+					somatorioCategorias/1]).
 
 :- use_module(library(apply)).
 :- use_module(library(csv)).
@@ -18,8 +19,8 @@ cadastra_categoria(N,V) :-
 
 write_cat(Nome, Valor) :-
 	string_lower(Nome, N),
-	atom_string(NomeAtom, N ),
-	assertz(categoria(NomeAtom,Valor)),
+	atom_string(NomeAtom, N),
+	assertz(categoria(NomeAtom, Valor)),
 	write_cat_file.
 
 write_cat_file :-
@@ -90,10 +91,19 @@ print_categorias([Head|Tail], [Head1|Tail1], Index) :-
 
 get_categorias(Result):-
     setup_bd,
-    findall(Nome, categoria(Nome,_), Queries),
+    findall(Nome, categoria(Nome, _), Queries),
     list_to_set(Queries, Result).
 
 get_categoriasV(Result):-
     setup_bd,
-    findall(Valor, categoria(_,Valor), Queries),
+    findall(Valor, categoria(_, Valor), Queries),
     list_to_set(Queries, Result).
+
+somatorioCategorias(Retorno) :-
+	get_categoriasV(ListaValores),
+	somatorio(ListaValores, ValorAcumulado),
+	Retorno is ValorAcumulado.
+
+somatorio([], 0).
+somatorio([Head|Tail], Valor) :-
+	somatorio(Tail, ValorAcumulado), Valor is ValorAcumulado + Head.

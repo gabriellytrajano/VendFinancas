@@ -1,7 +1,8 @@
 :-module(gastoFixo, [cadastraGastoFixo/0, 
 	editaGastoFixo/0,
 	excluiGastoFixo/0,
-	listaGastoFixo/0]).
+	listaGastoFixo/0,
+	somatorioGastosFixos/1]).
 
 :- use_module(library(apply)).
 :- use_module(library(csv)).
@@ -68,7 +69,6 @@ deleta_gastofixo(Nome):-
 		listing(gastofixo/2),
 		told.
 
-
 listaGastoFixo:- 
 	nl,show_gastofixo,nl.
 
@@ -96,3 +96,12 @@ get_gastofixoV(Result):-
     setup_bd,
     findall(Nome, gastofixo(_,Nome), Queries),
     list_to_set(Queries, Result).
+
+somatorioGastosFixos(Retorno) :-
+	get_gastofixoV(ListaValores),
+	somatorio(ListaValores, ValorAcumulado),
+	Retorno is ValorAcumulado.
+
+somatorio([], 0).
+somatorio([Head|Tail], Valor) :-
+	somatorio(Tail, ValorAcumulado), Valor is ValorAcumulado + Head.

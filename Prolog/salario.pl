@@ -1,7 +1,8 @@
 :-module(salario, [ cadastraSalario/0, 
 	mostraSalario/0,
 	editaSalario/0, 
-	excluiSalario/0]).
+	excluiSalario/0,
+	valorSalario/1]).
 
 :- use_module(library(apply)).
 :- use_module(library(csv)).
@@ -27,7 +28,7 @@ cadastraSalario :-
 mostraSalario :- 
 	setup_bd,
 	salary(X),
-	nl,(X = 0) -> write("Salário inexistente, cadastre um."),nl;
+	nl, (X = 0) -> write("Salário inexistente, cadastre um."), nl;
 	salary(X),
 	nl,write("Seu Salário é R$"),
 	write(X), nl.
@@ -49,3 +50,7 @@ excluiSalario :-
 	write_salary(salary(0)),
 	nl,write("Salário zerado com sucesso!!"),nl.
 
+valorSalario(Valor) :-
+	setup_bd,
+	salary(X),
+	Valor is X.

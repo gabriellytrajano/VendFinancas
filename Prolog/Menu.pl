@@ -4,6 +4,7 @@
 :- use_module("bonusSalarial").
 :- use_module("investimentos").
 :- use_module("saldoFinal").
+:- initialization(main).
 
 mostraLetreiro :-
     writeln(" _   _                   _  _ ______  _                                        "),                                       
@@ -134,13 +135,33 @@ menuSaldoFinal :-
     writeln("3 - Calcular estimativa do saldo anual"),
     writeln("4 - Voltar ao menu principal"),
     read(Option),
-    (Option == 1 ->  tty_clear,saldoFinal:saldoMensal, menuSaldoFinal;
-    Option == 2 ->  tty_clear,saldoFinal:estimativaSemestral, menuSaldoFinal;
-    Option == 3 ->  tty_clear,saldoFinal:estimativaAnual, menuSaldoFinal;
-    Option == 4 ->  tty_clear,mostraMenu; 
+    (Option == 1 ->  tty_clear, mostrarSaldoFinalMensal, nl, menuSaldoFinal;
+    Option == 2 ->  tty_clear, mostrarEstimativaSemestral, nl, menuSaldoFinal;
+    Option == 3 ->  tty_clear, mostrarEstimativaAnual, nl, menuSaldoFinal;
+    Option == 4 ->  tty_clear, mostraMenu; 
     funcaoInvalidaFuncion, 
     menuSaldoFinal).
 
+mostrarSaldoFinalMensal :-
+    salario:valorSalario(Salario),
+    bonusSalarial:valorBonus(Bonus),
+    categoria:somatorioCategorias(Categorias),
+    gastoFixo:somatorioGastosFixos(GastosFixos),
+    saldoFinal:saldoMensal(Salario, Bonus, Categorias, GastosFixos).
+
+mostrarEstimativaSemestral :-
+    salario:valorSalario(Salario),
+    bonusSalarial:valorBonus(Bonus),
+    categoria:somatorioCategorias(Categorias),
+    gastoFixo:somatorioGastosFixos(GastosFixos),
+    saldoFinal:estimativaSemestral(Salario, Bonus, Categorias, GastosFixos).
+
+mostrarEstimativaAnual :-
+    salario:valorSalario(Salario),
+    bonusSalarial:valorBonus(Bonus),
+    categoria:somatorioCategorias(Categorias),
+    gastoFixo:somatorioGastosFixos(GastosFixos),
+    saldoFinal:estimativaAnual(Salario, Bonus, Categorias, GastosFixos).
 
 funcaoInvalidaFuncion :-
-	 writeln("Opcao invalida :( "),nl.
+	 writeln("Opcao invalida :( "), nl.

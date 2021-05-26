@@ -9,7 +9,7 @@ setup_bd :-
 
 write_bonus(Valor):-
 	open('./data/bd_bonusSalarial.pl', write, S),
-	write(S,':-dynamic bonusSalarial/1.'),
+	write(S,':-dynamic bonus/1.'),
 	nl(S),
 	write(S,Valor),
 	put_char(S,.),

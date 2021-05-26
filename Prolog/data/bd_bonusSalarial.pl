@@ -1,2 +1,2 @@
-:-dynamic bonusSalarial/1.
-bonus(0).
+:-dynamic bonus/1.
+bonus(500).

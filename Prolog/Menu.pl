@@ -4,7 +4,6 @@
 :- use_module("bonusSalarial").
 :- use_module("investimentos").
 :- use_module("saldoFinal").
-:- initialization(main).
 
 mostraLetreiro :-
     writeln(" _   _                   _  _ ______  _                                        "),                                       

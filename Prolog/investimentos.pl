@@ -23,7 +23,7 @@ jurosCompostos:-
     write("Digite o tempo em meses a ser calculado: "),nl,
     read(Tempo),
     Montante is (Capital * ((1 + (Taxa/100))^Tempo)),
-    Rendimento is (Res - Capital),
+    Rendimento is (Montante - Capital),
     tty_clear,
     write("Nessa modalidade o seu dinheiro rendeu: R$"),
     write(Rendimento),nl,
